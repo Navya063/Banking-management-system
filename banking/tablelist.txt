@@ -1,0 +1,14 @@
+create database banking;
+
+use database banking;
+
+create table actypetab(actypename varchar(20),acdeatails varchar(50),facility varchar(250),minbal numeric(6));
+
+create table custactab(acno numeric(10),pword varchar(20),acname varchar(50),acadd varchar(250),
+mobileno numeric(10),email varchar(50),actypename varchar(20),custapp varchar(1));
+
+create table trantab(tranno numeric(4),trandate date,acno numeric(10),dbamt numeric(10),cramt numeric(10),trandetails varchar(50));
+
+create table logintab(userid varchar(20),pword varchar(20));
+
+CREATE TRIGGER `insertlog` BEFORE DELETE ON `custactab` FOR EACH ROW INSERT INTO log VALUES(OLD.acno,null, OLD.acname,OLD.acadd, OLD.mobileno, OLD.email,null, 'deleted', NOW());
